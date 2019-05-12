@@ -1,2 +1,2 @@
-<!--pages/me/me.wxml-->
-<text>pages/me/me.wxml</text>
+<button bindtap="openSetting" type="primary" size="default" open-type="getUserInfo">授权</button>
+<button bindtap='getInfo'>展示信息</button>
