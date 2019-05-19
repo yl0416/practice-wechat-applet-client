@@ -4,6 +4,11 @@ var pageObject = {
 	},
 
 	getInfo:function(e){
+		wx.login({
+			success(res){
+				console.log(res);
+			}
+		})
 		wx.getUserInfo({
 			success:function(res){
 				console.log(res.userInfo);
