@@ -8,7 +8,7 @@ var pageObject = {
 			success(res){
 				console.log(res);
 			}
-		})
+		});
 		wx.getUserInfo({
 			success:function(res){
 				console.log(res.userInfo);
@@ -19,6 +19,6 @@ var pageObject = {
 			}
 		})
 	}
-}
+};
 
 Page(pageObject);
