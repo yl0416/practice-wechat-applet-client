@@ -1,1 +1,0 @@
-<button bindtap="openSetting" type="primary" size="default" open-type="getUserInfo">授权</button>

@@ -12,7 +12,7 @@ App({
                 that.globalData.userName = res.userInfo.nickName;
             },
             fail(res) {
-                console.warn("用户不同意授权！");
+                console.log("用户不同意授权！");
             }
         });
     },
