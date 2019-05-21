@@ -1,10 +1,15 @@
 ## Notice
 + [API & Model Definition](https://github.com/songwonderful/practice-wechat-applet-server)
 
+## 描述
+> 小程序目前有三个tab：home，edit，search
+> home页面中呈现文章，教师，课程列表，点击列表中的每一项可以访问对应的文章，教师，课程页面
+> edit页面中用户可以添加课程，添加老师，添加文章
+> search页面中用户通过输入名称和查询类型来获取结果，结果以列表的形式呈现，可以通过点击访问相应的文章，教师和课程页面
 ## 分工
 + [ ] home页面 & article页面 & teacher页面 & course页面 & comment组件 --> @燕 
-+ [ ] edit页面 --> @王
-+ [ ] search页面 --> @单
++ [ ] edit页面 --> @单
++ [ ] search页面 --> @王
 + [ ] 小程序端其余事情 & 服务器端api完善与更新 --> @宋
 
 ## 页面&组件
