@@ -1,63 +1,50 @@
 import {hostName} from './config.js'
 
 App({
-    globalData:{
-      userID:undefined  
+    globalData: {
+        userID: undefined,
+        userName: undefined
     },
     onLaunch(options) {
-        wx.getSetting({
+        const that = this;
+        wx.getUserInfo({
             success(res) {
-                if (!res.authSetting['scope.userInfo']) {
-                    wx.showToast({
-                        title: '请授权！',
-                        icon: 'none'
-                    });
-                    wx.switchTab({
-                      url: '/pages/me/me'
-                    })
-                }
+                that.globalData.userName = res.userInfo.nickName;
+            },
+            fail(res) {
+                console.warn("用户不同意授权！");
             }
         });
     },
     onShow(options) {
         const that = this;
-        wx.getStorage({
+        wx.getStorage({ // 从存储中获取code，如果不存在，则向服务器端发送请求获取
             key: 'userID',
             success: res => {
                 this.globalData.userID = res.data;
                 console.log("userID: " + this.globalData.userID);
             },
-
             fail: res => {
                 wx.login({
                     success: function (loginRes) {
                         if (loginRes.code) {
-                            wx.getUserInfo({
+                            wx.request({
+                                url: hostName + 'register?code=' + loginRes.code + '&userName=' + that.globalData.userName,
                                 success(res) {
-                                    wx.request({
-                                        url: hostName + 'register?code=' + loginRes.code + '&userName=' + res.userInfo.nickName,
-                                        success(res) {
-                                            if (res.statusCode === 200) {
-                                                wx.setStorage({
-                                                    key: "userID",
-                                                    data: res.data
-                                                });
-                                                that.globalData.userID = res.data;
-                                                console.log("userID: " + that.globalData.userID);
-                                            } else {
-                                                console.log(res.statusCode);
-                                            }
-                                        }
-                                    });
-
+                                    if (res.statusCode === 200) {
+                                        wx.setStorage({
+                                            key: "userID",
+                                            data: res.data
+                                        });
+                                        that.globalData.userID = res.data;
+                                        console.log("userID: " + that.globalData.userID);
+                                    } else {
+                                        console.error(res.statusCode);
+                                    }
                                 }
                             });
                         } else {
-                            wx.showToast({
-                                title: "获取code失败：" + res.errorMsg,
-                                duration: 2000,
-                                icon:"none"
-                            });
+                            console.error("获取code失败：" + res.errorMsg);
                         }
                     }
                 })
