@@ -1,1 +1,0 @@
-export const hostName='https://iamazing.cn:3005/';

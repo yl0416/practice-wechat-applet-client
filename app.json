@@ -6,7 +6,8 @@
         "pages/course/course",
         "pages/edit/edit",
         "pages/search/search",
-        "pages/teacher/teacher"
+        "pages/teacher/teacher",
+        "pages/auth/auth"
     ],
     "window": {
         "backgroundTextStyle": "light",
